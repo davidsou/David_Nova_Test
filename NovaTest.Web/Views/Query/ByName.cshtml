@@ -1,0 +1,37 @@
+﻿@model IEnumerable<NovaTest.Domain.Entities.Client>
+
+@{
+    ViewBag.Title = "ByName";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>Search clients by name</h3>
+    </div>
+
+
+    <div class="panel-body">
+
+        @using (Ajax.BeginForm("ByName", "Query", new AjaxOptions { UpdateTargetId = "divResults" }))
+        {
+            <div class="row">
+                <div class="col-md-2">
+                    <label>Client name</label>
+                </div>
+                <div class="col-md-3">
+                    <input type="text" name="searchname" class=" form-control" />
+                </div>
+                <div class ="col-md-2">
+                    <input type="Submit" value="Search" class="btn btn-primary" />
+                </div>
+
+            </div>
+
+            <div id="divResults"></div>
+        }
+        @section Scripts {
+            <script src='@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")'></script>
+        }
+    </div>
+</div>
+

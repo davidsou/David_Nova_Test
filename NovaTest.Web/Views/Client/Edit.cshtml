@@ -1,0 +1,60 @@
+﻿@model NovaTest.Domain.Entities.Client
+
+@{
+    ViewBag.Title = "Edit" + @Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="panel">
+
+    <div class="panel-heading">
+        <h3>Edit - @Model.Name</h3>
+    </div>
+
+    @using (Html.BeginForm("Edit","Client"))
+    {
+        <div class="panel-body">
+
+            @Html.HiddenFor(m => m.idClient)
+            @Html.HiddenFor(m => m.TypeOperation)
+            @Html.HiddenFor(m => m.UserOperation)
+
+            @foreach (var property in ViewData.ModelMetadata.Properties)
+            {
+
+                if (property.PropertyName != "idClient")
+                {
+                    <div class="form-group">
+                        <label>
+                            @(property.PropertyName)
+                          
+                        </label>
+                        
+                            @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
+                            @Html.ValidationMessage(property.PropertyName)
+                    </div>
+
+                }
+            }
+
+        </div>
+
+        <div class="panel-footer">
+            <input type="submit" value="Save" class="btn btn-primary" />
+            @Html.ActionLink("Cancel and Return", "Index", null, new { @class = "btn btn-default" })
+        </div>
+    }
+
+    @section Scripts {
+        <script src='@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")'></script>
+    }
+
+</div>
+
+
+
+
+
+
